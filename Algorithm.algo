@@ -1,0 +1,43 @@
+BEGIN
+    // Input: word is a string to be tested for palindrome
+    // Output: true if the word is a palindrome, false otherwise
+
+    // Get the length of the word
+    length = LENGTH(word)
+
+    // Initialize variables for comparing characters at the ends
+    start = 0
+    end = length - 1
+
+    // Define a function to check if two characters are equal
+    FUNCTION areEqual(char1, char2)
+        RETURN (char1 == char2)
+    END FUNCTION
+
+    // Define a function to check if a word is a palindrome recursively
+    FUNCTION isPalindromeRec(start, end)
+        // Base case: empty word or a word containing a single character is a palindrome
+        IF start >= end
+            RETURN true
+        END IF
+
+        // Compare characters at the ends
+        IF areEqual(word[start], word[end])
+            // Test the rest of the word
+            RETURN isPalindromeRec(start + 1, end - 1)
+        ELSE
+            // Stop if characters are different
+            RETURN false
+        END IF
+    END FUNCTION
+
+    // Call the recursive function to check if the word is a palindrome
+    result = isPalindromeRec(start, end)
+
+    // Output the result
+    IF result
+        OUTPUT "The word is a palindrome."
+    ELSE
+        OUTPUT "The word is not a palindrome."
+    END IF
+END
